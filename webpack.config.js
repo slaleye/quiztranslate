@@ -5,7 +5,7 @@ const htmlPlugin = new HtmlWebpackPlugin({
   template: "src/index.html", // to import index.html file inside index.js
 });
 
-const outputPath = path.join(__dirname, "/dist");
+const outputPath = path.join(__dirname, "/public");
 
 console.log({ outputPath });
 
