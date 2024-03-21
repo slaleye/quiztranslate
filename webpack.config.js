@@ -1,23 +1,24 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-
-const htmlPlugin =  new HtmlWebpackPlugin({
+const htmlPlugin = new HtmlWebpackPlugin({
   template: "src/index.html", // to import index.html file inside index.js
-})
+});
+
+const outputPath = path.join(__dirname, "/dist");
+
+console.log({ outputPath });
 
 module.exports = {
-  entry:'./src/index.js',
+  entry: "./src/index.js",
   output: {
-    path: path.join(__dirname, "/dist"), // the bundle output path
+    path: outputPath, // the bundle output path
     filename: "bundle.js", // the name of the bundle
   },
-  plugins: [
-    htmlPlugin
-  ],
+  plugins: [htmlPlugin],
   devServer: {
     port: 3030, // you can change the port
-    open:true, // Automatically open browser when server starts
+    open: true, // Automatically open browser when server starts
   },
   module: {
     rules: [
