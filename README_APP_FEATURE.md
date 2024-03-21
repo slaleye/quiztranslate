@@ -14,5 +14,6 @@ A React App for translated Quiz using the DeepL API
 - React + Webpack: https://reintech.io/blog/how-to-use-react-with-webpack
 - React: https://react.dev/learn/start-a-new-react-project
 - Webpack : https://webpack.js.org/guides/getting-started/
-- Babel:
+- Babel: https://babeljs.io/docs/babel-preset-react
+
 
