@@ -3,9 +3,11 @@ import styles from "./App.module.css";
 
 const initialQuizList = [
   {
+    id: 1,
     name: "German States",
     questions: [
       {
+        id: 1,
         text: "What is the capital city of Bavaria (Bayern)",
         position: 1,
         answers: [
@@ -22,6 +24,7 @@ const initialQuizList = [
         ],
       },
       {
+        id: 2,
         text: "What is the capital city of Saxony (Sachsen)?",
         position: 2,
         answers: [
@@ -40,9 +43,11 @@ const initialQuizList = [
     ],
   },
   {
+    id: 2,
     name: "German Law",
     questions: [
       {
+        id: 1,
         text: "What is the supreme law of Germany?",
         position: 1,
         answers: [
@@ -59,6 +64,7 @@ const initialQuizList = [
         ],
       },
       {
+        id: 2,
         text: "What is the highest court in Germany?",
         position: 2,
         answers: [
@@ -109,7 +115,7 @@ function QuizzList({ quizzes }) {
     return <>There are no quizzes! Add one</>;
   } else {
     return (
-      <ul  className={styles.quizList}>
+      <ul className={styles.quizList}>
         {quizzes.map((quizz) => {
           return (
             <li key={quizz.name} className={styles.quiz}>
