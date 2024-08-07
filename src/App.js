@@ -94,25 +94,32 @@ const App = () => {
 
   const addNewQuizz = () => {
     if (newQuizzName) {
-      const newQuizz = { name: newQuizzName, questions: [] };
+      const newQuizz = { id:randomId() ,name: newQuizzName, questions: [] };
       setQuizzes((oldQuizzes) => [...oldQuizzes, newQuizz]);
       setNewQuizzName("");
     }
   };
+
+  const deleteQuizz = (id) => {
+    if (id) {
+      setQuizzes((oldQuizzes) => [...oldQuizzes.filter( (quizz) => quizz.id !== id )]);
+    }
+  };
+
   return (
     <div className={styles.App}>
       <h1>Quizz App</h1>
       <p>Current Quizes</p>
-      <QuizzList quizzes={quizzes} />
+      <QuizzList quizzes={quizzes} deleteQuizz={deleteQuizz} />
       <input value={newQuizzName} onChange={updateQuizzName} />
       <button onClick={addNewQuizz}>Add New Quiz</button>
     </div>
   );
 };
 
-function QuizzList({ quizzes }) {
-  if (!quizzes) {
-    return <>There are no quizzes! Add one</>;
+function QuizzList({ quizzes , deleteQuizz }) {
+  if (!quizzes.length) {
+    return <p>There are no quizzes! Add one</p>;
   } else {
     return (
       <ul className={styles.quizList}>
@@ -122,7 +129,7 @@ function QuizzList({ quizzes }) {
               <span>{quizz.name}</span>
               <div className={styles.buttonList}>
                 <button className={styles.buttonBlue}>Edit</button>{" "}
-                <button className={styles.buttonRed}>Delete</button>
+                <button className={styles.buttonRed} onClick={() => deleteQuizz(quizz.id)}>Delete</button>
               </div>
             </li>
           );
@@ -132,4 +139,7 @@ function QuizzList({ quizzes }) {
   }
 }
 
+function randomId(){
+  return Math.round(Math.random() * 100)
+}
 export default App;
