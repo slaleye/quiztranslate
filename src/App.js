@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./App.module.css";
 
-const quizList = [
+const initialQuizList = [
   {
     name: "German States",
     questions: [
@@ -79,21 +79,51 @@ const quizList = [
 ];
 
 const App = () => {
+  const [quizzes, setQuizzes] = useState(initialQuizList);
+  const [newQuizzName, setNewQuizzName] = useState("");
+
+  const updateQuizzName = (e) => {
+    return setNewQuizzName(e.target.value);
+  };
+
+  const addNewQuizz = () => {
+    if (newQuizzName) {
+      const newQuizz = { name: newQuizzName, questions: [] };
+      setQuizzes((oldQuizzes) => [...oldQuizzes, newQuizz]);
+      setNewQuizzName("");
+    }
+  };
   return (
     <div className={styles.App}>
       <h1>Quizz App</h1>
       <p>Current Quizes</p>
-      <ul>
-        {quizList.map((quizz) => {
-          console.log(quizz);
-          return <li>{quizz.name}</li>;
-        })}
-      </ul>
-
-      <button>Add New Quiz</button>
-    
+      <QuizzList quizzes={quizzes} />
+      <input value={newQuizzName} onChange={updateQuizzName} />
+      <button onClick={addNewQuizz}>Add New Quiz</button>
     </div>
   );
 };
+
+function QuizzList({ quizzes }) {
+  if (!quizzes) {
+    return <>There are no quizzes! Add one</>;
+  } else {
+    return (
+      <ul  className={styles.quizList}>
+        {quizzes.map((quizz) => {
+          return (
+            <li key={quizz.name} className={styles.quiz}>
+              <span>{quizz.name}</span>
+              <div className={styles.buttonList}>
+                <button className={styles.buttonBlue}>Edit</button>{" "}
+                <button className={styles.buttonRed}>Delete</button>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    );
+  }
+}
 
 export default App;
