@@ -1,7 +1,9 @@
 # quizztranslate
 A React App for translated Quiz using the DeepL API
 - Dev setup
-- React 18 + Webpack
+- React 18 + Webpack 5
+- Deploy: https://quiztranslate.vercel.app/
+
 # v 1.0 : Quiz CRUD
  - a Quiz has a set of questions
  - quiz ( name, questions[] )
