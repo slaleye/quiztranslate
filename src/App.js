@@ -1,91 +1,11 @@
 import React, { useState } from "react";
 import styles from "./App.module.css";
 
-const initialQuizList = [
-  {
-    id: 1,
-    name: "German States",
-    questions: [
-      {
-        id: 1,
-        text: "What is the capital city of Bavaria (Bayern)",
-        position: 1,
-        answers: [
-          {
-            text: "Munich (München)",
-            isCorrect: true,
-          },
-          {
-            text: "Berlin",
-          },
-          {
-            text: "Frankfurt",
-          },
-        ],
-      },
-      {
-        id: 2,
-        text: "What is the capital city of Saxony (Sachsen)?",
-        position: 2,
-        answers: [
-          {
-            text: "Dresden",
-            isCorrect: true,
-          },
-          {
-            text: "Leipzig",
-          },
-          {
-            text: "Chemnitz",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    id: 2,
-    name: "German Law",
-    questions: [
-      {
-        id: 1,
-        text: "What is the supreme law of Germany?",
-        position: 1,
-        answers: [
-          {
-            text: "Grundgesetz",
-            isCorrect: true,
-          },
-          {
-            text: "Strafgesetzbuch",
-          },
-          {
-            text: "Handelsgesetzbuch",
-          },
-        ],
-      },
-      {
-        id: 2,
-        text: "What is the highest court in Germany?",
-        position: 2,
-        answers: [
-          {
-            text: "Bundesgerichtshof",
-          },
-          {
-            text: "Bundesverfassungsgericht",
-            isCorrect: true,
-          },
-          {
-            text: "Oberlandesgericht",
-          },
-        ],
-      },
-    ],
-  },
-];
+import { createQuiz, quizzes as quizList, removeQuiz } from "./core/quiz";
 
 const App = () => {
-  const [quizzes, setQuizzes] = useState(initialQuizList);
+  const [quizzes, setQuizzes] = useState(quizList);
+
   const [newQuizzName, setNewQuizzName] = useState("");
 
   const updateQuizzName = (e) => {
@@ -94,16 +14,15 @@ const App = () => {
 
   const addNewQuizz = () => {
     if (newQuizzName) {
-      const newQuizz = { id:randomId() ,name: newQuizzName, questions: [] };
-      setQuizzes((oldQuizzes) => [...oldQuizzes, newQuizz]);
+      const newQuiz = createQuiz(newQuizzName);
+      setQuizzes(quizList)
       setNewQuizzName("");
     }
   };
 
   const deleteQuizz = (id) => {
-    if (id) {
-      setQuizzes((oldQuizzes) => [...oldQuizzes.filter( (quizz) => quizz.id !== id )]);
-    }
+      const deletedQuiz = removeQuiz(id);
+      setQuizzes(quizList)
   };
 
   return (
@@ -117,7 +36,7 @@ const App = () => {
   );
 };
 
-function QuizzList({ quizzes , deleteQuizz }) {
+function QuizzList({ quizzes, deleteQuizz }) {
   if (!quizzes.length) {
     return <p>There are no quizzes! Add one</p>;
   } else {
@@ -129,7 +48,12 @@ function QuizzList({ quizzes , deleteQuizz }) {
               <span>{quizz.name}</span>
               <div className={styles.buttonList}>
                 <button className={styles.buttonBlue}>Edit</button>{" "}
-                <button className={styles.buttonRed} onClick={() => deleteQuizz(quizz.id)}>Delete</button>
+                <button
+                  className={styles.buttonRed}
+                  onClick={() => deleteQuizz(quizz.id)}
+                >
+                  Delete
+                </button>
               </div>
             </li>
           );
@@ -139,7 +63,4 @@ function QuizzList({ quizzes , deleteQuizz }) {
   }
 }
 
-function randomId(){
-  return Math.round(Math.random() * 100)
-}
 export default App;
