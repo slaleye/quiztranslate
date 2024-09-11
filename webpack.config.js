@@ -35,4 +35,7 @@ module.exports = {
       },
     ],
   },
+  resolve: {
+    extensions: [".js", ".jsx"],
+  }, //fix error when file extension is .jsx
 };
