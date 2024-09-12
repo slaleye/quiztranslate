@@ -47,13 +47,12 @@ input {
   gap: 2rem;
 
 }
-.quiz {
+
+.quizTitle, .questionTitle {
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-.quiz:hover {
-  background-color: blanchedalmond;
+  margin-block: .5rem;
 }
 
 .buttonList {
@@ -63,4 +62,18 @@ input {
 
 .buttonList button:first-child {
   margin-inline-end: 1rem;
+}
+
+.version {
+  font-size: small;
+  color:gray;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-inline {
+  display: inline-flex;
+  gap: 1rem;
 }

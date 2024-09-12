@@ -1,18 +1,27 @@
 import React, { useState } from "react";
-import { createQuiz } from "../core/quiz";
+import { addNewQuizAction, resetQuizAction } from "../lib/actions";
 
-export const AddQuizForm = () => {
-  const [newQuizzName, setNewQuizzName] = useState("");
+export const AddQuizForm = ({ dispatch }) => {
+  const [name, setName] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createQuiz(newQuizzName);
+    dispatch(addNewQuizAction(name));
+    setName("");
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <input value={newQuizzName} onChange={e => setNewQuizzName(e.target.value)} />
-      <button type="submit">Add New Quiz</button>
+      <input value={name} onChange={(e) => setName(e.target.value)} />
+      <div className="flex-inline">
+        <button
+          className="buttonRed"
+          onClick={(e) => dispatch(resetQuizAction())}
+        >
+          Reset Quiz
+        </button>
+        <button type="submit">Add New Quiz</button>
+      </div>
     </form>
   );
 };

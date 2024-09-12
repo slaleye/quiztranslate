@@ -106,11 +106,11 @@ export function removeQuiz(id) {
   if (!quiz) return;
 
   const filteredQuizList = quizzes.filter((quiz) => quiz.id !== id);
-  quizzes = [...filteredQuizList];
+
   return quiz;
 }
 
-function getQuizId() {
+export function getQuizId() {
   quizIdCounter += 1;
   return quizIdCounter;
 }
