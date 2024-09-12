@@ -4,6 +4,9 @@ import { quizzes as initialQuizList } from "../core/quiz";
 
 export const reducer = (state, action) => {
   if (action.type === ADD_NEW_QUIZ) {
+    if (!action.payload.name) {
+      return state;
+    }
     return [
       ...state,
       { id: getQuizId(), name: action.payload.name, questions: [] },
