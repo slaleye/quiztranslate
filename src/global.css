@@ -41,18 +41,28 @@ input {
   margin: 2rem;
 }
 
+.quiz {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+li.quiz {
+  list-style: none;
+}
+
 .quizList {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-
 }
 
-.quizTitle, .questionTitle {
+.quizTitle,
+.questionTitle {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-block: .5rem;
+  margin-block: 0.5rem;
 }
 
 .buttonList {
@@ -66,7 +76,7 @@ input {
 
 .version {
   font-size: small;
-  color:gray;
+  color: gray;
 }
 
 .flex {
