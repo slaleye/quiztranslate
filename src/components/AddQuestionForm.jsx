@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { addNewQuestionAction, resetQuizAction } from "../lib/actions";
 
-export const AddQuestionForm = ({ dispatch }) => {
+export const AddQuestionForm = () => {
   const [name, setName] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addNewQuestionAction(name));
     setName("");
   };
 

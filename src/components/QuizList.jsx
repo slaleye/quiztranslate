@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Quiz } from "./Quiz";
+import { QuizDispatchContext } from "../lib/context";
 
-export const QuizList = ({ quizzes, dispatch }) => {
+
+export const QuizList = ({ quizzes }) => {
+  const dispatch = useContext(QuizDispatchContext);
+
   if (!quizzes || !quizzes.length) {
     return <p>There are no quizzes! Try adding a new one.</p>;
   }

@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Question = ({ question, dispatch }) => {
+export const Question = ({ question }) => {
   if (!question) {
     return <></>;
   }

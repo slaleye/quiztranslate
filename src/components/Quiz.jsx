@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { removeQuizAction } from "../lib/actions";
 import { QuestionList } from "./QuestionList";
+import { QuizDispatchContext } from "../lib/context";
+import { AddQuestionForm } from "./AddQuestionForm";
 
-export const Quiz = ({ quiz, dispatch }) => {
+export const Quiz = ({ quiz }) => {
+  const dispatch = useContext(QuizDispatchContext);
+
   if (!quiz) {
     return <></>;
   }
@@ -21,8 +25,8 @@ export const Quiz = ({ quiz, dispatch }) => {
           </button>
         </div>
       </div>
-
-      <QuestionList questions={quiz.questions} dispatch={dispatch} />
+      <AddQuestionForm />
+      <QuestionList questions={quiz.questions} />
     </li>
   );
 };

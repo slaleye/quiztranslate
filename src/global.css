@@ -6,6 +6,12 @@ body {
   background-color: aquamarine;
 }
 
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+
 .App {
   background-color: white;
   border: 1px solid black;
@@ -55,6 +61,10 @@ li.quiz {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+}
+
+.questionList {
+  margin-inline-start: 1rem;
 }
 
 .quizTitle,
