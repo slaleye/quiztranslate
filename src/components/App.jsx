@@ -1,23 +1,21 @@
-import React, { useReducer } from "react";
+import React from "react";
 import { QuizList } from "./QuizList";
-import { AddQuizForm } from "./AddQuizForm";
-import { reducer } from "../lib/reducer";
-import { quizzes as initialQuizList } from "../core/quiz";
-import { QuizDispatchContext } from "../lib/context";
+import { AddQuiz } from "./AddQuiz";
+import { Provider } from "../state/context";
 
 const App = () => {
-  const [quizzes, dispatch] = useReducer(reducer, initialQuizList);
-  console.log(quizzes);
 
   return (
-    <QuizDispatchContext.Provider value={dispatch}>
-      <div className="App">
-        <h1>Quiz App</h1>
-        <AddQuizForm />
-        <QuizList quizzes={quizzes} />
-        <span className="version">V 0.1</span>
-      </div>
-    </QuizDispatchContext.Provider>
+    <React.StrictMode>
+      <Provider>
+        <div className="App">
+          <h1>Quiz App</h1>
+          <AddQuiz />
+          <QuizList/>
+          <span className="version">V 0.1</span>
+        </div>
+      </Provider>
+    </React.StrictMode>
   );
 };
 

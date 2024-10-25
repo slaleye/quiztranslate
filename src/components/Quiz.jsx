@@ -1,11 +1,10 @@
-import React, { useContext } from "react";
-import { removeQuizAction } from "../lib/actions";
+import React from "react";
 import { QuestionList } from "./QuestionList";
-import { QuizDispatchContext } from "../lib/context";
-import { AddQuestionForm } from "./AddQuestionForm";
+import { AddQuestion } from "./AddQuestion";
+import { useActions } from "../state/hooks";
 
 export const Quiz = ({ quiz }) => {
-  const dispatch = useContext(QuizDispatchContext);
+  const { removeQuiz } = useActions();
 
   if (!quiz) {
     return <></>;
@@ -19,14 +18,14 @@ export const Quiz = ({ quiz }) => {
           <button className="buttonBlue">Edit</button>{" "}
           <button
             className="buttonRed"
-            onClick={() => dispatch(removeQuizAction(quiz.id))}
+            onClick={() => removeQuiz({ quizId: quiz.id })}
           >
             Delete
           </button>
         </div>
       </div>
-      <AddQuestionForm />
-      <QuestionList questions={quiz.questions} />
+      <AddQuestion quizId={quiz.id} />
+      <QuestionList quizId={quiz.id} questions={quiz.questions} />
     </li>
   );
 };

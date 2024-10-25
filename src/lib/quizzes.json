@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "name": "German States",
+    "questions": [
+      {
+        "id": 1,
+        "text": "What is the capital city of Bavaria (Bayern)",
+        "position": 1,
+        "answers": [
+          {
+            "text": "Munich (München)",
+            "isCorrect": true
+          },
+          {
+            "text": "Berlin"
+          },
+          {
+            "text": "Frankfurt"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "text": "What is the capital city of Saxony (Sachsen)?",
+        "position": 2,
+        "answers": [
+          {
+            "text": "Dresden",
+            "isCorrect": true
+          },
+          {
+            "text": "Leipzig"
+          },
+          {
+            "text": "Chemnitz"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "German Law",
+    "questions": [
+      {
+        "id": 1,
+        "text": "What is the supreme law of Germany?",
+        "position": 1,
+        "answers": [
+          {
+            "text": "Grundgesetz",
+            "isCorrect": true
+          },
+          {
+            "text": "Strafgesetzbuch"
+          },
+          {
+            "text": "Handelsgesetzbuch"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "text": "What is the highest court in Germany?",
+        "position": 2,
+        "answers": [
+          {
+            "text": "Bundesgerichtshof"
+          },
+          {
+            "text": "Bundesverfassungsgericht",
+            "isCorrect": true
+          },
+          {
+            "text": "Oberlandesgericht"
+          }
+        ]
+      }
+    ]
+  }
+]

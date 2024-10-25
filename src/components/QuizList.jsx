@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Quiz } from "./Quiz";
-import { QuizDispatchContext } from "../lib/context";
+import { useQuizzes } from "../state/hooks";
 
+export const QuizList = () => {
 
-export const QuizList = ({ quizzes }) => {
-  const dispatch = useContext(QuizDispatchContext);
+  const quizzes = useQuizzes();
 
   if (!quizzes || !quizzes.length) {
     return <p>There are no quizzes! Try adding a new one.</p>;
@@ -13,7 +13,7 @@ export const QuizList = ({ quizzes }) => {
   return (
     <ul className="quizList">
       {quizzes.map((quiz) => (
-        <Quiz key={quiz.id} quiz={quiz} dispatch={dispatch} />
+        <Quiz key={quiz.id} quiz={quiz} />
       ))}
     </ul>
   );
