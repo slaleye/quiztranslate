@@ -2,6 +2,7 @@ const QUIZZES_ADD = "QUIZZES_ADD";
 const QUIZZES_REMOVE = "QUIZZES_REMOVE";
 const QUIZZES_QUESTIONS_ADD = "QUIZZES_QUESTIONS_ADD";
 const QUIZZES_QUESTIONS_REMOVE = "QUIZZES_QUESTIONS_REMOVE";
+const QUIZZES_UPDATE = "QUIZZES_UPDATE";
 
 import { v4 as uuidv4 } from "uuid";
 
@@ -9,6 +10,10 @@ export const quizzesActions = {
   addQuiz: ({ name }) => ({
     type: QUIZZES_ADD,
     payload: { name },
+  }),
+  updateQuiz: ({ quizId, name }) => ({
+    type: QUIZZES_UPDATE,
+    payload: { name, quizId },
   }),
   removeQuiz: ({ quizId }) => ({
     type: QUIZZES_REMOVE,
@@ -37,12 +42,38 @@ export const quizzesReducer = (state, action) => {
     return [...state, quiz];
   }
 
+  if (action.type === QUIZZES_UPDATE) {
+    if (!action.payload?.name) {
+      throw new Error("Missing Name");
+    }
+
+    const quizIndex = state.findIndex(
+      (quiz) => quiz.id === action.payload.quizId,
+    );
+
+    if (quizIndex < 0) {
+      throw new Error("Quiz not found");
+    }
+
+    const oldQuiz = state[quizIndex];
+
+    const updatedQuiz = {
+      ...oldQuiz,
+      name: action.payload?.name,
+    };
+
+    return [
+      ...state.slice(0, quizIndex),
+      updatedQuiz,
+      ...state.slice(quizIndex + 1),
+    ];
+  }
+
   if (action.type === QUIZZES_REMOVE) {
     return state.filter((quiz) => quiz.id !== action.payload.quizId);
   }
 
   if (action.type === QUIZZES_QUESTIONS_ADD) {
-
     const quizIndex = state.findIndex(
       (quiz) => quiz.id === action.payload.quizId,
     );

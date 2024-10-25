@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { QuestionList } from "./QuestionList";
 import { AddQuestion } from "./AddQuestion";
 import { useActions } from "../state/hooks";
 
 export const Quiz = ({ quiz }) => {
-  const { removeQuiz } = useActions();
+  const [name, setName] = useState(quiz.name);
+  const { removeQuiz, updateQuiz } = useActions();
 
   if (!quiz) {
     return <></>;
@@ -13,9 +14,18 @@ export const Quiz = ({ quiz }) => {
   return (
     <li key={quiz.name} className="quiz">
       <div className="quizTitle">
-        <span>{quiz.name}</span>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
         <div className="buttonList">
-          <button className="buttonBlue">Edit</button>{" "}
+          <button
+            className="buttonBlue"
+            onClick={() => updateQuiz({ quizId: quiz.id, name })}
+          >
+            Edit
+          </button>{" "}
           <button
             className="buttonRed"
             onClick={() => removeQuiz({ quizId: quiz.id })}
