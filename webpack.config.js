@@ -7,6 +7,9 @@ const htmlPlugin = new HtmlWebpackPlugin({
 
 const outputPath = path.join(__dirname, "/public");
 
+const isDevelopment = process.env.NODE_ENV !== 'production';
+const port = process.env.PORT || 3030;
+
 console.log({ outputPath });
 
 module.exports = {
@@ -17,25 +20,30 @@ module.exports = {
   },
   plugins: [htmlPlugin],
   devServer: {
-    port: 3030, // you can change the port
+    port: port, // you can change the port
     open: true, // Automatically open browser when server starts
+    static: {
+      directory: path.resolve(__dirname, 'public'),
+    },
   },
+  mode: isDevelopment ? 'development' : 'production',
+  devtool: isDevelopment ? 'source-map' : false,
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/, // .js and .jsx files
+        test: /\.(js|jsx|ts|tsx)$/, // .js and .jsx files
         exclude: /node_modules/, // excluding the node_modules folder
         use: {
-          loader: "babel-loader",
+          loader: "babel-loader", //change to ts-loader
         },
       },
       {
-        test: /\.css$/, // styles files
-        use: ["style-loader", "css-loader"],
+        test: /\.(css|scss)$/, // styles files
+        use: ["style-loader", "css-loader", "sass-loader"],
       },
     ],
   },
   resolve: {
-    extensions: [".js", ".jsx"],
+    extensions: [".js", ".jsx",".ts", ".tsx"],
   }, //fix error when file extension is .jsx
 };
