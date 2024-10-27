@@ -20,7 +20,7 @@ module.exports = {
   },
   plugins: [htmlPlugin],
   devServer: {
-    port: port, // you can change the port
+    port: port,
     open: true, // Automatically open browser when server starts
     static: {
       directory: path.resolve(__dirname, 'public'),
