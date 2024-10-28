@@ -1,0 +1,99 @@
+html,
+body {
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  background-color: aquamarine;
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  min-width: 300px;
+}
+
+.buttonRed {
+  background-color: pink;
+}
+
+.buttonBlue {
+  background-color: skyblue;
+}
+
+button {
+  background-color: lightgreen;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+button:hover {
+  background-color: black;
+  color: white;
+}
+
+input {
+  height: 1.5rem;
+  border: 2px solid green;
+  margin: 2rem;
+}
+
+.quiz {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+li.quiz {
+  list-style: none;
+}
+
+.quizList {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.questionList {
+  margin-inline-start: 1rem;
+}
+
+.quizTitle,
+.questionTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-block: 0.5rem;
+}
+
+.buttonList {
+  display: flex;
+  margin-inline: 10px;
+}
+
+.buttonList button:first-child {
+  margin-inline-end: 1rem;
+}
+
+.version {
+  font-size: small;
+  color: gray;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-inline {
+  display: inline-flex;
+  gap: 1rem;
+}
